@@ -1,21 +1,25 @@
-import { connect } from "react-redux";
-import { Card } from '@mui/material';
+import { useSelector, useDispatch } from "react-redux";
+import { Button, Card } from '@mui/material';
+import { addItem } from '../../store/actions';
 
-const Products = ({products, activeCategory}) => {
+const Products = () => {
+    const dispatch = useDispatch();
+    const { products } = useSelector(state => state)
+    const { activeCategory } = useSelector(state => state.category);
+
+
     return (
         <>
         {activeCategory && products.map((product, index) => (
-            <Card key={`product-${index}`} variant="outlined">{product.name}</Card>
+            <Card data-testid={`product-${index}`}key={`product-${index}`} 
+            variant="outlined">
+                {product.name}
+                <Button variant="text" onClick={() => dispatch(addItem(product))}>
+                    Add Item</Button>
+                </Card>
             ))}
         </>
     )
-} 
-
-const mapStateToProps = ({products}) => {
-    return {
-        products: products.products,
-        activeCategory: products.activeCategory
-    }
 };
 
-export default connect(mapStateToProps)(Products);
+export default Products;
