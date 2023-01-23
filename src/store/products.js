@@ -16,6 +16,8 @@ const productsReducer = (state = initialState, action) => {
       return initialState.filter((product) => product.category === payload);
     case "RESET":
       return initialState;
+    case "SET-PRODUCTS":
+      return payload;
     default:
       return state;
   }

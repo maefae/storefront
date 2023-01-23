@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const selectCategory = (category) => {
   return {
     type: "SELECT_CATEGORY",
@@ -24,4 +26,19 @@ export const removeItem = (product) => {
     type: "REMOVE",
     payload: product,
   };
+};
+
+export const setProducts = (products) => {
+  return {
+    type: "SET-PRODUCTS",
+    payload: products,
+  };
+};
+
+export const getProducts = () => async (dispatch, getState) => {
+  let response = await axios.get(
+    "https://api-js401.herokuapp.com/api/v1/products"
+  );
+  console.log(response.data.results);
+  dispatch(setProducts(response.data.results));
 };

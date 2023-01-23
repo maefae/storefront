@@ -1,12 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Card } from '@mui/material';
-import { addItem } from '../../store/actions';
+import { addItem, getProducts } from '../../store/actions';
+import { useEffect } from "react";
 
 const Products = () => {
     const dispatch = useDispatch();
     const { products } = useSelector(state => state)
     const { activeCategory } = useSelector(state => state.category);
 
+    useEffect(() => {
+        dispatch(getProducts());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>
