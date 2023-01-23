@@ -1,9 +1,5 @@
 const initialState = {
-  categories: [
-    { name: "electronics", displayName: "Electronics" },
-    { name: "food", displayName: "Food" },
-    { name: "clothing", displayName: "Clothing" },
-  ],
+  categories: [],
   activeCategory: "",
 };
 
@@ -15,6 +11,11 @@ const categoryReducer = (state = initialState, action) => {
       return {
         ...state,
         activeCategory: payload,
+      };
+    case "SET-CATEGORIES":
+      return {
+        ...state,
+        categories: payload,
       };
     case "RESET":
       return initialState;

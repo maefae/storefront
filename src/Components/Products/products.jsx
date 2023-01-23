@@ -13,9 +13,11 @@ const Products = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const renderList = products.filter(product => product.category === activeCategory)
+
     return (
         <>
-        {activeCategory && products.map((product, index) => (
+        {activeCategory && renderList.map((product, index) => (
             <Card data-testid={`product-${index}`}key={`product-${index}`} 
             variant="outlined">
                 {product.name}
