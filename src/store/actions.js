@@ -49,6 +49,13 @@ export const setCategories = (products) => {
   };
 };
 
+export const updateProduct = (product) => {
+  return {
+    type: "UPDATE-PRODUCTS",
+    payload: product,
+  };
+};
+
 export const getProducts = () => async (dispatch, getState) => {
   let response = await axios.get(
     "https://api-js401.herokuapp.com/api/v1/products"
@@ -61,6 +68,14 @@ export const getCategories = () => async (dispatch, getState) => {
   let response = await axios.get(
     "https://api-js401.herokuapp.com/api/v1/categories"
   );
-  console.log(response.data.results);
   dispatch(setCategories(response.data.results));
+};
+
+export const adjustInventory = (product) => async (dispatch, getState) => {
+  product.inStock--;
+  let response = await axios.put(
+    `https://api-js401.herokuapp.com/api/v1/products/${product._id}`,
+    product
+  );
+  dispatch(updateProduct(response.data));
 };

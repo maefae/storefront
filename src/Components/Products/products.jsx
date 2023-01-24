@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Card } from '@mui/material';
-import { addItem, getProducts } from '../../store/actions';
+import { addItem, adjustInventory, getProducts } from '../../store/actions';
 import { useEffect } from "react";
 
 const Products = () => {
@@ -15,14 +15,18 @@ const Products = () => {
 
     const renderList = products.filter(product => product.category === activeCategory)
 
+    const handler = (product) => {
+        dispatch(addItem(product));  
+        dispatch(adjustInventory(product));
+    }
+
     return (
         <>
         {activeCategory && renderList.map((product, index) => (
             <Card data-testid={`product-${index}`}key={`product-${index}`} 
             variant="outlined">
                 {product.name}
-                <Button variant="text" onClick={() => dispatch(addItem(product))}>
-                    Add Item</Button>
+                <Button variant="text" onClick={() => handler(product)}>Add Item</Button>
                 </Card>
             ))}
         </>
