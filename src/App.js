@@ -1,15 +1,18 @@
-import Categories from "./Components/Categories/categories";
 import Header from "./Components/Header/header";
-import Products from "./Components/Products/products";
-import SimpleCart from "./Components/SimpleCart/simpleCart";
+import StoreFront from "./Components/Storefront";
+import ShoppingCart from "./Components/ShoppingCart";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
   return (
     <>
-      <Header />
-      <Categories />
-      <Products />
-      <SimpleCart />
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<StoreFront />} />
+          <Route path="/cart" element={<ShoppingCart />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Card } from '@mui/material';
-import { addItem, adjustInventory, getProducts } from '../../store/actions';
+import { addItem } from '../../../store/cart';
+import { adjustInventory, getProducts } from "../../../store/products";
 import { useEffect } from "react";
 
 const Products = () => {

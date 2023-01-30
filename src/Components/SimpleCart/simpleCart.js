@@ -1,7 +1,7 @@
 // import { Button } from "@mui/material";
-import { makeStyles } from "@mui/material";
+// import { makeStyles } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { removeItem } from "../../store/actions";
+import { removeItem } from "../../store/cart";
 import { When } from "react-if";
 import "./styles.scss";
 
