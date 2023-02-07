@@ -3,6 +3,8 @@ import { Button, Card } from '@mui/material';
 import { addItem } from '../../../store/cart';
 import { adjustInventory, getProducts } from "../../../store/products";
 import { useEffect } from "react";
+import { Link } from 'react-router-dom';
+
 
 const Products = () => {
     const dispatch = useDispatch();
@@ -27,7 +29,10 @@ const Products = () => {
             <Card data-testid={`product-${index}`}key={`product-${index}`} 
             variant="outlined">
                 {product.name}
+                <img style={{width: '15%'}} alt={product.name} src={`https://source.unsplash.com/random?${product.name}`} />
                 <Button variant="text" onClick={() => handler(product)}>Add Item</Button>
+
+                <Button component={Link} to={`/product/${product._id}`} variant="text" onClick={() => handler(product)}>View Details</Button>
                 </Card>
             ))}
         </>
