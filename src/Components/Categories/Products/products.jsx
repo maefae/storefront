@@ -26,7 +26,7 @@ const Products = () => {
     return (
         <>
         {activeCategory && renderList.map((product, index) => (
-            <Card data-testid={`product-${index}`}key={`product-${index}`} 
+            <Card data-testid={`product-${index}`} key={`product-${index}`} 
             variant="outlined">
                 {product.name}
                 <img style={{width: '15%'}} alt={product.name} src={`https://source.unsplash.com/random?${product.name}`} />
